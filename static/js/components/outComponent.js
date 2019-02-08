@@ -38,7 +38,7 @@ outComponent.onAttached = async () => {
   outComponent.$element.appendChild(
     new TextComponent(
       `Previously Used Site - ${
-        prevSite === "None" ? "None" : new URL(prevSite).hostname
+        prevSite === "None" || !prevSite ? "None" : new URL(prevSite).hostname
       }`
     )
   );

@@ -17,6 +17,7 @@ const inputComponent = animInput.inputComponent;
 export const addMediaComponent = new Component("div", {}, []);
 
 addMediaComponent.onAttached = () => {
+  addMediaComponent.destroyChildComponents(false, true);
   addMediaComponent.addChild(animInput.component);
   addMediaComponent.update();
 };

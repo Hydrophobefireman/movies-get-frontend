@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <base href="/" />
-  <meta content="Watch Movies for Free" name="og:title" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-  <meta content="Watch Unlimited Movies For Free on movies-get!" name="description" />
-  <meta content="https://res.cloudinary.com/proxypy/image/upload/v1530529985/social-network-static.jpg" name="og:image" />
-  <meta content="movies-get" name="og:site_name" />
-  <meta content="Watch Unlimited Movies For Free on movies-get!" name="og:description" />
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <meta content="#1976d2" name="theme-color" />
-  <title>movies get</title>
-<link rel="stylesheet" href="/styles.8db1298bf185ca6b210d.css"></head>
-
-<body>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-  <app-root></app-root>
-<script type="text/javascript" src="/runtime.967e7535c76ed4c4fe77.js"></script><script type="text/javascript" src="/polyfills.c6871e56cb80756a5498.js"></script><script type="text/javascript" src="/main.3835dea166a953329b50.js"></script></body>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Watch Movies on Movies-Get</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <header class="header">
+      <span
+        router-header
+        _routerEvt="onclick"
+        _routerAct="if($event.ctrlKey){return};$event.stopPropagation();this.load('/')"
+        class="banner-button"
+        _routerif="this.currentRoute!=='/'"
+      >
+        <a class="router-link" href="#/">Home Page</a>
+      </span>
+      <span
+        router-header
+        class="banner-button"
+        _routerEvt="onclick"
+        _routerAct="if($event.ctrlKey){return};$event.stopPropagation();this.load('/all')"
+        _routerif="this.currentRoute!=='/all/'"
+      >
+        <a class="router-link" href="#/all">All Movies</a>
+      </span>
+    </header>
+    <div class="center">
+      <div id="app-root"></div>
+    </div>
+  </body>
 </html>

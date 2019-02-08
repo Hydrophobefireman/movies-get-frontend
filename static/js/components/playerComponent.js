@@ -101,6 +101,7 @@ async function playerComponentOnAttached() {
   );
   const hasSubs = await _hasSubs.json();
   if (hasSubs.data) {
+    subtitlesComponent.destroyChildComponents(false, true);
     subtitlesComponent.children = [
       new Component("a", {}, [new TextComponent("Download Subtitles")], {
         href: `${URLBASE}/api/get-subtitles/?${subURL}`,

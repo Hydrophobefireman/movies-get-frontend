@@ -20,7 +20,7 @@ outComponent.onAttached = async () => {
     return outComponent.addChild(new TextComponent("Bad URL"));
   }
   const components = [];
-  const $ps = await Requests.get("/api/site-select/");
+  const $ps = await Requests.get("/api/out/?url=true");
   const prevSite = (await $ps.json()).site;
   for (const [host, url] of Object.entries(
     outComponent.CURRENT_AVAILABLE_WEBSITES

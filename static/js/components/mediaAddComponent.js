@@ -16,9 +16,9 @@ const animInput = getNewInputComponent("Press enter to search", false);
 const inputComponent = animInput.inputComponent;
 export const addMediaComponent = new Component("div", {}, []);
 
-animInput.component.onAttached = () => {
-  animInput.component.addChild(animInput.component);
-  animInput.component.update();
+addMediaComponent.onAttached = () => {
+  addMediaComponent.addChild(animInput.component);
+  addMediaComponent.update();
 };
 
 const attachClkListener = (child, title) => {

@@ -14,4 +14,4 @@ if __name__ == "__main__":
     pr.wait()
     print("adding CNAME")
     with open(os.path.join(build_dir, "CNAME"), "w") as f:
-        f.write("tv.pycode.tk")
+        f.write("movies.pycode.tk")

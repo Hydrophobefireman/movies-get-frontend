@@ -14,9 +14,13 @@ const transformURL = s => {
 };
 const animInput = getNewInputComponent("Press enter to search", false);
 const inputComponent = animInput.inputComponent;
-export const addMediaComponent = new Component("div", {}, [
-  animInput.component
-]);
+export const addMediaComponent = new Component("div", {}, []);
+
+animInput.component.onAttached = () => {
+  animInput.component.addChild(animInput.component);
+  animInput.component.update();
+};
+
 const attachClkListener = (child, title) => {
   child.attachEventListener(
     "click",

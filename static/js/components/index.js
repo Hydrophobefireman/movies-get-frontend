@@ -56,7 +56,7 @@ export const asYouTypeComponent = new Component("div", {}, [
   resultsComponent,
   searchButtonComponent
 ]);
-export const indexComponent = new Component("div", {}, [
+const indexComponent = new Component("div", {}, [
   newmovieComponent,
   asYouTypeComponent,
   new Component(
@@ -93,3 +93,4 @@ indexComponent.onAttached = () => {
     true
   );
 };
+export default indexComponent;

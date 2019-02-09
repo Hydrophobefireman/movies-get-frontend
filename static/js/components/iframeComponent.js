@@ -1,6 +1,5 @@
 import Component from "../router/component.js";
 import { TextComponent } from "../router/utils.js";
-import { getMovieMetaData } from "../services/showMetaDataService.js";
 import { loadHash, urlencode } from "../router/routerUtils.js";
 import { preventDefault } from "../common.js";
 const loadingHTML =

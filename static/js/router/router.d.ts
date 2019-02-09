@@ -17,7 +17,7 @@ export default class Router {
         actualRoute?: string;
     };
     isUserGoingBack(nextRoute: string): boolean;
-    registerComponent(route: string, component: Component, strictMatching?: boolean): void;
+    registerComponent(route: string, component: Component | Promise<Component>, strictMatching?: boolean): void;
     readonly currentRoute: string;
     readonly currentPath: string[];
     readonly currentQs: URLSearchParams;

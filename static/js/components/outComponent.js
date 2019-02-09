@@ -5,7 +5,7 @@ import { Requests } from "../services/httpService.js";
 import { URLBASE } from "../common.js";
 const prepURL = (site, url) => `${site}${encodeURIComponent(url)}`;
 
-export const outComponent = new Component("div");
+const outComponent = new Component("div");
 outComponent.CURRENT_AVAILABLE_WEBSITES = {
   "PROXY-PY.HEROKUAPP.COM":
     "https://proxy-py.herokuapp.com/api/parse_query?url=",
@@ -33,7 +33,7 @@ outComponent.onAttached = async () => {
     components.push(comp);
   }
   outComponent.$element.appendChild(new TextComponent("select a website"));
-  outComponent.children = [...components];
+  outComponent.children = components;
   outComponent.update();
   outComponent.$element.appendChild(
     new TextComponent(
@@ -43,3 +43,4 @@ outComponent.onAttached = async () => {
     )
   );
 };
+export default outComponent;

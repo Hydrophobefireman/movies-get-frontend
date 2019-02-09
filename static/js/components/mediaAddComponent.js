@@ -14,7 +14,7 @@ const transformURL = s => {
 };
 const animInput = getNewInputComponent("Press enter to search", false);
 const inputComponent = animInput.inputComponent;
-export const addMediaComponent = new Component("div", {}, []);
+const addMediaComponent = new Component("div", {}, []);
 
 addMediaComponent.onAttached = () => {
   addMediaComponent.destroyChildComponents(false, true);
@@ -92,3 +92,4 @@ inputComponent.attachEventListener(
   "keydown",
   handleKeyDown.bind(inputComponent)
 );
+export default addMediaComponent;

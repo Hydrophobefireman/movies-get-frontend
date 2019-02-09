@@ -27,7 +27,10 @@ module.exports = {
                 }
               ]
             ],
-            plugins: ["@babel/plugin-transform-runtime"]
+            plugins: [
+              "@babel/plugin-transform-runtime",
+              "@babel/plugin-syntax-dynamic-import"
+            ]
           }
         }
       },
@@ -51,7 +54,7 @@ module.exports = {
     ]
   },
   entry: `${__dirname}/static/js/app.js`,
-  output: { path: `${__dirname}/docs`, filename: "[name]-[hash].js" },
+  output: { path: `${__dirname}/docs`, filename: "[name]-[contenthash].js" },
   mode,
   optimization: {
     minimizer: devOrProd([new minifier({ parallel: !0 })], []),

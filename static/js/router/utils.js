@@ -2,7 +2,6 @@
 export const asyncNoop = async () => void 0;
 export const isDev = (() => location.hostname === "localhost")();
 export const isKeyValObj = a => a.constructor === Object;
-
 export const isSameDay = (c, d) => {
   return (
     c.getFullYear() === d.getFullYear() &&

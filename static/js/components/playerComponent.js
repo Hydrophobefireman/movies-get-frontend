@@ -38,7 +38,7 @@ const currentShowNameComponent = new Component("h2", {}, [currentMovieName], {
   style: "font-weight:bold"
 });
 const subtitlesComponent = new Component("div", {}, []);
-export const playerComponent = new Component("div", {}, [
+const playerComponent = new Component("div", {}, [
   asYouTypeComponent,
   currentShowNameComponent,
   subtitlesComponent,
@@ -113,3 +113,4 @@ async function playerComponentOnAttached() {
   }
 }
 playerComponent.onAttached = playerComponentOnAttached;
+export default playerComponent;

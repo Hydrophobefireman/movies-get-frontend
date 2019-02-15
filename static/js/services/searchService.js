@@ -82,7 +82,7 @@ export const generateComponents = async data => {
   }
   return children;
 };
-const updateChildrenEQLength = async (_resp, childComponents) => {
+const updateChildrenEQLength = (_resp, childComponents) => {
   childComponents.forEach((child, i) => {
     const resp = _resp[i];
     const img = child.children[0];
@@ -91,24 +91,28 @@ const updateChildrenEQLength = async (_resp, childComponents) => {
     const span = child.children[1];
     span.setDomAttrs({ style: { display: "" } }, false);
     const textComponent = TextComponent.find(prevID, span.$element)[0];
-    const movieID = resp.id,
-      movieName = resp.movie;
+    const showID = resp.id,
+      showName = resp.movie;
     a.setDomAttrs({ style: { display: "" } }, false);
-    const $$url = getWebpifSupported(resp.thumb);
-    img.setDomAttrs({ style: { "background-image": `url(${$$url})` } }, false);
-    if (prevID === movieID) {
+    getWebpifSupported(resp.thumb).then($$url => {
+      img.setDomAttrs(
+        { style: { "background-image": `url(${$$url})` } },
+        false
+      );
+      img.updateDOMAttrs();
+    });
+    if (prevID === showID) {
       return;
     }
-    const url = `/watch?${urlencode({ id: movieID, movie: movieName })}`;
+    const url = `/watch?${urlencode({ id: showID, show: showName })}`;
     a.setDomAttrs({ href: `#${url}` }, false);
-    a.setState({ id: movieID, movieName }, false);
-    textComponent.data = movieName;
-    textComponent.tag = movieID;
+    a.setState({ id: showID, showName }, false);
+    textComponent.data = showName;
+    textComponent.tag = showID;
     // debugger;
     // child.update();
   });
 };
-
 export const createResponseComponentsSync = () => {
   component.destroyChildComponents(false, true);
   return component;

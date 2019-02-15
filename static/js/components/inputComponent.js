@@ -1,7 +1,8 @@
 import Component from "../router/component.js";
 import { TextComponent } from "../router/utils.js";
 import { getSocket } from "../services/socket.js";
-import { parseHash, loadHash, setQS } from "../router/routerUtils.js";
+import { parseHash, setQS } from "../router/routerUtils.js";
+import {} from "./socketResponseParser.js";
 export const setTitle = text => void (document.title = text);
 class _InputComponent extends Component {
   update() {
@@ -33,8 +34,10 @@ class _InputComponent extends Component {
   }
   handleBlur() {
     this.setState({ isFocused: false });
+    try {
+      getResponseComponent();
+    } catch (e) {}
   }
-
   constructor(socket) {
     super("input", { value: "" }, [], {
       className: ["paper-input"]

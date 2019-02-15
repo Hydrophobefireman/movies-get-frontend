@@ -198,3 +198,5 @@ rot13.lookup = rot13.input.reduce(
   (m, k, i) => Object.assign(m, { [k]: rot13.output[i] }),
   {}
 );
+
+export const defer = fn => Promise.resolve().then(fn);

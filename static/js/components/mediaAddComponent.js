@@ -14,12 +14,14 @@ const transformURL = s => {
 };
 const animInput = getNewInputComponent("Press enter to search", false);
 const inputComponent = animInput.inputComponent;
-const addMediaComponent = new Component("div", {}, []);
+const resChildren = new Component("div");
+const addMediaComponent = new Component("div");
 
 addMediaComponent.onAttached = () => {
   addMediaComponent.destroyChildComponents(false, true);
   addMediaComponent.addChild(animInput.component);
-  addMediaComponent.update();
+  addMediaComponent.addChild(resChildren);
+  addMediaComponent.renderChildrenOnly();
 };
 
 const attachClkListener = (child, title) => {
@@ -55,6 +57,7 @@ async function handleKeyDown(e) {
     if (val) {
       let shows;
       try {
+        resChildren.destroyChildComponents(false, true);
         const data = await Requests.get(
           `/media/add-shows/fetch/?${urlencode({ s: val })}`,
           true
@@ -78,8 +81,8 @@ async function handleKeyDown(e) {
           attachClkListener(child, title);
           children.push(child);
         }
-        addMediaComponent.addChild(new Component("div", {}, children), false);
-        addMediaComponent.update();
+        resChildren.addChild(new Component("div", {}, children), false);
+        resChildren.update();
       } else {
         return addMediaComponent.$element.appendChild(
           new TextComponent("No Results found", "$$")

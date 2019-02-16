@@ -200,3 +200,11 @@ rot13.lookup = rot13.input.reduce(
 );
 
 export const defer = fn => Promise.resolve().then(fn);
+export const delve = (_obj, key) => {
+  let obj = _obj;
+  const p = key.split(".");
+  for (let i = 0; i < p.length && obj; i++) {
+    obj = obj[p[i]];
+  }
+  return obj;
+};

@@ -28,11 +28,10 @@ function getFileAsBase64(buffer) {
     reader.readAsDataURL(blob);
   });
 }
-const decoder = new TextDecoder(),
-  encoder = new TextEncoder();
+const decoder = new TextDecoder();
 const replaceCarriageReturns = f => {
   const str = decoder.decode(f);
-  return encoder.encode(str.replace(/\r\n/g, "\n")).buffer;
+  return str.replace(/\r\n/g, "\n");
 };
 function getSubtitleFile() {
   return new Promise(resolve => {
@@ -48,11 +47,10 @@ async function handleMovieClick() {
   const { id } = this.getState;
   const file = await getSubtitleFile();
   const buf = replaceCarriageReturns(file);
-  const asBase64 = await getFileAsBase64(buf);
   const req = await Requests.post(
     "/_/api/experiments/subtitle-remote-upload",
     true,
-    { mid: id, subs: asBase64 },
+    { mid: id, subs: buf },
     { "content-type": "application/json" }
   );
   const resp = await req.text();

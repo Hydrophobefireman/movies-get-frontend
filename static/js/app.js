@@ -6,11 +6,15 @@ import _2 from "../css/AYTResponses.css";
 import { $ } from "./router/utils.js";
 import { Requests } from "./services/httpService.js";
 import { retry, applyExternalCss, delve } from "./common.js";
+import MatSpinner from "./spinner-element.js";
+window.customElements.define("mat-spinner", MatSpinner);
 window.oldTitle = document.title;
 const appRoot = $.id("app-root");
 const router = new Router(appRoot);
 applyExternalCss("https://fonts.googleapis.com/css?family=Open+Sans");
-appRoot.innerHTML = "Connecting to server";
+appRoot.innerHTML =
+  "Connecting to the server<br><mat-spinner svgstyle='width:150px;height:150px;margin-top:50px'></mat-spinner>";
+
 retry(() => Requests.get("/collect/"), 3)
   .then(async () => {
     const indexComponent = () =>
@@ -36,6 +40,7 @@ retry(() => Requests.get("/collect/"), 3)
       "/all/": allComponent,
       "/add-subtitles/": addSubtitlesComponent
     };
+
     const currRoute = router.currentRoute;
     const reqComponent = obj[currRoute];
     const md = await reqComponent();

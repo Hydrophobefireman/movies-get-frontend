@@ -39,7 +39,8 @@ export function handleKeyDown(e) {
   } else if (e.keyCode === 13) {
     const val = this.getState.value || "";
     if (val.trim()) {
-      loadHash(`/search?${urlencode({ q: val })}`);
+      getResponseComponent();
+      return loadHash(`/search?${urlencode({ q: val })}`);
     }
   }
 }
@@ -77,6 +78,7 @@ animatedInputComponent.inputComponent.attachEventListener(
 export function handleButtonClick() {
   const q = this.getState.query;
   if (q && q.trim()) {
+    getResponseComponent();
     loadHash(`/search?${urlencode({ q })}`);
   }
 }

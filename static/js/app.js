@@ -12,8 +12,7 @@ window.oldTitle = document.title;
 const appRoot = $.id("app-root");
 const router = new Router(appRoot);
 applyExternalCss("https://fonts.googleapis.com/css?family=Open+Sans");
-appRoot.innerHTML =
-  "Connecting to the server<br><mat-spinner svgstyle='width:150px;height:150px;margin-top:50px'></mat-spinner>";
+appRoot.innerHTML = "Connecting to the server<br><mat-spinner></mat-spinner>";
 
 retry(() => Requests.get("/collect/"), 3)
   .then(async () => {

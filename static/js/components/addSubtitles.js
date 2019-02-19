@@ -37,7 +37,6 @@ function getSubtitleFile() {
   return new Promise(resolve => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = ".srt, application/x-subrip, text/srt";
     input.onchange = ({ target: { files } }) =>
       resolve(new Response(files[0]).arrayBuffer());
     input.click();

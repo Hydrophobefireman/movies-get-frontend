@@ -2,7 +2,6 @@ import Component from "../router/component.js";
 import { TextComponent } from "../router/utils.js";
 import { getSocket } from "../services/socket.js";
 import { parseHash, setQS } from "../router/routerUtils.js";
-import { getResponseComponent } from "./socketResponseParser.js";
 export const setTitle = text => void (document.title = text);
 class _InputComponent extends Component {
   update() {

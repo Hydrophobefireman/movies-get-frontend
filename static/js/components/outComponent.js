@@ -14,8 +14,10 @@ outComponent.CURRENT_AVAILABLE_WEBSITES = {
   "PROXY-DL.HEROKUAPP.COM": "https://proxy-dl.herokuapp.com/video?url="
 };
 outComponent.onAttached = async () => {
-  outComponent.destroyChildComponents(false, true);
   const urlToDownload = parseHash(location.href).qs.get("url");
+  sendData({ data: "out-component", url: urlToDownload });
+  outComponent.destroyChildComponents(false, true);
+
   if (!urlToDownload) {
     return outComponent.addChild(new TextComponent("Bad URL"));
   }

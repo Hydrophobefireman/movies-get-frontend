@@ -15,6 +15,7 @@ import {
 } from "./iframeComponent.js";
 import { Requests } from "../services/httpService.js";
 import { URLBASE } from "../common.js";
+import { sendData } from "../services/dataService.js";
 const sanitizeURL = url => {
   if (!url || url.toLowerCase() === "none") {
     return null;
@@ -66,6 +67,9 @@ iframeSelectorComponent.bindData(
   false
 );
 async function playerComponentOnAttached() {
+  const currentQS = parseHash(location.href).qs;
+  const movieID = currentQS.get("id");
+  sendData({ data: "player-component", movieID });
   subtitlesComponent.destroyChildComponents(false, true);
   currentMovieName.textContent = "Loading";
   animatedInputComponent.inputComponent.attachEventListener(
@@ -73,8 +77,7 @@ async function playerComponentOnAttached() {
     defaulthandleKeyDown.bind(animatedInputComponent.inputComponent),
     !0
   );
-  const currentQS = parseHash(location.href).qs;
-  const movieID = currentQS.get("id");
+
   const metaData = await getMovieMetaData(movieID);
   if (metaData.error) {
     return showErrorComponent(

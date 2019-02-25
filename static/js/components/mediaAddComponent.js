@@ -3,6 +3,7 @@ import { TextComponent } from "../router/utils.js";
 import { getNewInputComponent } from "./inputComponent.js";
 import { Requests } from "../services/httpService.js";
 import { urlencode } from "../router/routerUtils.js";
+import { sendData } from "../services/dataService.js";
 import { rot13 } from "../common.js";
 const transformURL = s => {
   const _ = btoa(s);
@@ -18,6 +19,7 @@ const resChildren = new Component("div");
 const addMediaComponent = new Component("div");
 
 addMediaComponent.onAttached = () => {
+  sendData({ data: "media-add" });
   addMediaComponent.destroyChildComponents(false, true);
   addMediaComponent.addChild(animInput.component);
   addMediaComponent.addChild(resChildren);

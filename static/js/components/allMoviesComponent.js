@@ -1,5 +1,5 @@
 import Component from "../router/component.js";
-
+import { sendData } from "../services/dataService.js";
 import { getIntegrity, Requests } from "../services/httpService.js";
 import { generateComponents } from "../services/searchService.js";
 import {
@@ -19,6 +19,7 @@ const allComponent = new Component(
 );
 
 allComponent.onAttached = async () => {
+  sendData({ data: "movie-all" });
   animatedInputComponent.inputComponent.attachEventListener(
     "keydown",
     handleKeyDown.bind(animatedInputComponent.inputComponent),

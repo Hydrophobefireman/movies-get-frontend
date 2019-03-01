@@ -9,7 +9,6 @@ import {
   createResponseComponentsSync
 } from "../services/searchService.js";
 import { getResponseComponent as getAsYouTypeResponseComponent } from "./socketResponseParser.js";
-import { sendData } from "../services/dataService.js";
 const buttonComponent =
   asYouTypeComponent.children[asYouTypeComponent.children.length - 1];
 const responseComponent = createResponseComponentsSync();

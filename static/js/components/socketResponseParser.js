@@ -21,7 +21,6 @@ const generateComponents = data => {
   for (const resp of data) {
     const movieID = resp.id;
     const movieName = resp.movie;
-    
     const url = `/watch?${urlencode({
       id: movieID,
       movie: sanitizedName(movieName)

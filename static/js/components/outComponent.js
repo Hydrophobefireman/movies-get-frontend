@@ -3,7 +3,6 @@ import { TextComponent } from "../router/utils.js";
 import { parseHash, urlencode } from "../router/routerUtils.js";
 import { Requests } from "../services/httpService.js";
 import { URLBASE } from "../common.js";
-import { sendData } from "../services/dataService.js";
 const prepURL = (site, url) => `${site}${encodeURIComponent(url)}`;
 
 const outComponent = new Component("div");
@@ -16,7 +15,6 @@ outComponent.CURRENT_AVAILABLE_WEBSITES = {
 };
 outComponent.onAttached = async () => {
   const urlToDownload = parseHash(location.href).qs.get("url");
-  sendData({ data: "out-component", url: urlToDownload });
   outComponent.destroyChildComponents(false, true);
 
   if (!urlToDownload) {

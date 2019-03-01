@@ -3,7 +3,6 @@ import { Requests } from "../services/httpService.js";
 import { TextComponent } from "../router/utils.js";
 import { loadHash, urlencode } from "../router/routerUtils";
 import { sanitizedName, getWebpifSupported, decodeHTML } from "../common.js";
-import { sendData } from "../services/dataService.js";
 export default class RecommendationsComponent extends Component {
   futureAddOn(d) {
     this._parent = d;
@@ -43,7 +42,6 @@ export default class RecommendationsComponent extends Component {
           if (e.ctrlKey) {
             return;
           }
-          sendData({ data: "recommendation-click", name: this.getState.name });
           loadHash(
             `/watch?${urlencode({
               id: this.getState.url,

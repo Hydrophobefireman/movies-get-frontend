@@ -3,10 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
 *.so
 node_modules/
-
+old.js/
 # Distribution / packaging
 .Python
 build/

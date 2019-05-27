@@ -1,37 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <base href="/" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Watch Movies on Movies-Get</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1,maximum-scale=1"
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href="https://fonts.pycode.tk/open-sans.css"
+      as="style"
     />
+    <meta name="description" content="movies.pycode.tk" />
   </head>
   <body>
-    <header class="header">
-      <span
-        router-header
-        _routerEvt="onclick"
-        _routerAct="if($event.ctrlKey){return};$event.stopPropagation();this.load('/')"
-        class="banner-button"
-        _routerif="this.currentRoute!=='/'"
-      >
-        <a class="router-link" href="#/">Home Page</a>
-      </span>
-      <span
-        router-header
-        class="banner-button"
-        _routerEvt="onclick"
-        _routerAct="if($event.ctrlKey){return};$event.stopPropagation();this.load('/all')"
-        _routerif="this.currentRoute!=='/all/'"
-      >
-        <a class="router-link" href="#/all">All Movies</a>
-      </span>
-    </header>
-    <div class="center">
-      <div id="app-root"></div>
-    </div>
+    <div id="app-root"></div>
   </body>
 </html>

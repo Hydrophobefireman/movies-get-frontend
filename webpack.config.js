@@ -23,11 +23,13 @@ module.exports = {
               [
                 "@babel/preset-env",
                 {
+                  useBuiltIns: "usage",
                   targets: ">0.5%,not ie 11,not op_mini all"
                 }
               ]
             ],
             plugins: [
+              "@babel/plugin-proposal-class-properties",
               "@babel/plugin-transform-runtime",
               "@babel/plugin-syntax-dynamic-import"
             ]
@@ -53,7 +55,7 @@ module.exports = {
       }
     ]
   },
-  entry: `${__dirname}/static/js/app.js`,
+  entry: `${__dirname}/static/js/App.js`,
   output: { path: `${__dirname}/docs`, filename: "[name]-[contenthash].js" },
   mode,
   optimization: {

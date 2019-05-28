@@ -19,10 +19,14 @@ export default class OutComponent extends Component {
       Fragment,
       null,
       Object.keys(CURRENT_AVAILABLE_WEBSITES).map(x =>
-        h("a", {
-          class: "download-set-url-links",
-          href: `${CURRENT_AVAILABLE_WEBSITES[x]}${encodeURIComponent(url)}`
-        })
+        h(
+          "a",
+          {
+            class: "download-set-url-links",
+            href: `${CURRENT_AVAILABLE_WEBSITES[x]}${encodeURIComponent(url)}`
+          },
+          CURRENT_AVAILABLE_WEBSITES[x]
+        )
       )
     );
   }

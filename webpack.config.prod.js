@@ -56,7 +56,11 @@ module.exports = {
     ]
   },
   entry: `${__dirname}/static/js/App.js`,
-  output: { path: `${__dirname}/docs`, filename: "[name]-[contenthash].js" },
+  output: {
+    path: `${__dirname}/docs`,
+    filename: "[name]-[contenthash].js",
+    publicPath: "/"
+  },
   mode,
   optimization: {
     minimizer: devOrProd([new minifier({ parallel: !0 })], []),
@@ -68,6 +72,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `${__dirname}/index.html`,
       xhtml: !0,
+      inject: false,
       favicon: "./favicon.ico",
       minify: devOrProd(
         {

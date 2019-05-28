@@ -1,8 +1,8 @@
 const minifier = require("terser-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+  autoPrefixPlugin = require("autoprefixer"),
   StyleExtHtmlWebpackPlugin = require("style-ext-html-webpack-plugin");
-const autoPrefixPlugin = require("autoprefixer");
 const mode = "development";
 // const mode = "production";
 const devOrProd = (a, b) => {
@@ -29,9 +29,9 @@ module.exports = {
               ]
             ],
             plugins: [
-              "@babel/plugin-proposal-class-properties",
               "@babel/plugin-transform-runtime",
-              "@babel/plugin-syntax-dynamic-import"
+              "@babel/plugin-syntax-dynamic-import",
+              "@babel/plugin-proposal-class-properties"
             ]
           }
         }
@@ -56,7 +56,11 @@ module.exports = {
     ]
   },
   entry: `${__dirname}/static/js/App.js`,
-  output: { path: `${__dirname}/docs`, filename: "[name]-[contenthash].js" },
+  output: {
+    path: `${__dirname}/docs`,
+    filename: "[name]-[contenthash].js",
+    publicPath: "/"
+  },
   mode,
   optimization: {
     minimizer: devOrProd([new minifier({ parallel: !0 })], []),
@@ -68,6 +72,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `${__dirname}/index.html`,
       xhtml: !0,
+      inject: false,
       favicon: "./favicon.ico",
       minify: devOrProd(
         {

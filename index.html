@@ -2,18 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <base href="/" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Watch Movies on Movies-Get</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <title>Hydrophobefireman</title>
+    <meta name="description" content="pycode.tk" />
     <link
       rel="preload"
       href="https://fonts.pycode.tk/open-sans.css"
       as="style"
     />
-    <meta name="description" content="movies.pycode.tk" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <% for (const val of Object.values(htmlWebpackPlugin.files.chunks)) { %>
+    <link href="<%= val.entry %>" rel="preload" as="script" />
+    <% if(!val.entry.includes("vendors")){ %>
+    <script defer src="<%= val.entry %>"></script>
+    <% } else{ %>
+    <script src="<%= val.entry %>"></script>
+    <% } %> <% } %>
   </head>
   <body>
-    <div id="app-root"></div>
+    <div id="root"></div>
   </body>
 </html>

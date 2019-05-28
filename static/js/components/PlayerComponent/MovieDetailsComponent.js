@@ -23,9 +23,12 @@ export class MovieDetailsComponent extends Component {
     if (!id) {
       this.setState({ badId: true });
     }
-    if (!oldProps || oldProps.id !== this.props.id) {
+    if (
+      !this.state.fetchingDetails &&
+      (!oldProps || oldProps.id !== this.props.id)
+    ) {
       this.setState({ URLArr: [], badId: false, fetchingDetails: true });
-      getMovieDetails(id)
+      return getMovieDetails(id)
         .then(x =>
           this.setState({
             URLArr: x.urls,

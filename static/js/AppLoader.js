@@ -44,6 +44,10 @@ const componentMap = {
   "/subs": () =>
     import(
       /* webpackChunkName:"@lazy/subtitles"*/ "./components/SubtitleComponent/SubtitleComponent.js"
+    ).then(getDefault),
+  "/out": () =>
+    import(
+      /* webpackChunkName:"@lazy/out"*/ "./components/OutComponent/OutComponent.js"
     ).then(getDefault)
 };
 export class AppLoader extends Component {
@@ -100,13 +104,11 @@ export class AppLoader extends Component {
         return h(
           Router,
           { fallbackComponent: NotFoundComponent },
-          Object.keys(componentMap).map(
-            key =>
-              console.log(absolutePath(key)) ||
-              h(AsyncComponent, {
-                componentPromise: componentMap[key],
-                path: absolutePath(key)
-              })
+          Object.keys(componentMap).map(key =>
+            h(AsyncComponent, {
+              componentPromise: componentMap[key],
+              path: absolutePath(key)
+            })
           )
         );
       } else {

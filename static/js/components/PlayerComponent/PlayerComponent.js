@@ -6,7 +6,7 @@ import Component, {
 
 import { DynamicResponseComponent } from "../DynamicResponseComponent/DynamicResponseComponent.js";
 import { MovieDetailsComponent } from "./MovieDetailsComponent.js";
-import { txtComponent, getHost } from "./util.js";
+import { txtComponent } from "./util.js";
 
 export default class PlayerComponent extends Component {
   state = { badId: false };

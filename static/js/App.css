@@ -141,3 +141,19 @@ html {
   border-radius: 20px;
   margin-top: 5px;
 } */
+
+.download-set-url-links {
+  display: block;
+  border: 2px solid #e3e3e3;
+  padding: 3px;
+  width: 65%;
+  margin: auto;
+  border-radius: 20px;
+  color: #000;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.download-set-url-links:active {
+  background-color: #fafafa;
+}

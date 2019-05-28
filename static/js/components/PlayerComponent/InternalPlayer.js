@@ -4,7 +4,7 @@ import Component, {
   A
 } from "../../@ui/ui-lib.js";
 import { defaultHTML, getHost } from "./util.js";
-import { urlencode } from "../../common.js";
+import { urlencode, decodeHTML } from "../../common.js";
 import { Requests } from "../../services/httpService.js";
 export class InternalPlayerComponent extends Component {
   state = { src: defaultHTML };
@@ -21,7 +21,7 @@ export class InternalPlayerComponent extends Component {
     return h(
       Fragment,
       null,
-      h("h2", { style: { fontWeight: "bold" } }, movieName),
+      h("h2", { style: { fontWeight: "bold" } }, decodeHTML(movieName)),
       h(SubtitlesComponent, { id }),
       URLs.map(x => h(URLSelectorComponent, { url: x, onClick: this.setSrc })),
       h("iframe", { class: "frame-src", src: this.state.src }),
@@ -41,11 +41,10 @@ class SubtitlesComponent extends Component {
   };
   componentWillMount() {
     if (typeof this.state.hasSubtitles === "boolean") return;
+    this.setState({ hasSubtitles: false });
     Requests.get("/api/movie/has-subtitles?" + urlencode({ s: this.props.id }))
       .then(x => x.json())
-      .then(resp => {
-        this.setState({ hasSubtitles: resp.data });
-      });
+      .then(resp => this.setState({ hasSubtitles: resp.data }));
   }
   componentWillUpdate = this.componentWillMount;
   render({ id }, { hasSubtitles }) {

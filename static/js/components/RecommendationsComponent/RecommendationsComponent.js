@@ -94,7 +94,7 @@ class ImgComponent extends Component {
   render({}, { thumb = "" }) {
     return h("div", {
       style: {
-        backgroundImage: `url(${thumb})`
+        backgroundImage: !thumb ? "none" : `url(${thumb})` //`url(${thumb || "about:blank"})` 
       },
       class: "rec-image"
     });

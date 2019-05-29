@@ -25,7 +25,7 @@ export default class OutComponent extends Component {
             class: "download-set-url-links",
             href: `${CURRENT_AVAILABLE_WEBSITES[x]}${encodeURIComponent(url)}`
           },
-          CURRENT_AVAILABLE_WEBSITES[x]
+          x
         )
       )
     );

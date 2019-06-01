@@ -5,7 +5,7 @@
   width: 60%;
 }
 .response-parent.has-data {
-  border: 2px solid #e3e3e3;
+  border: 2px solid var(--border-shadow-color);
   border-radius: 20px;
   padding: 4px;
 }
@@ -22,10 +22,10 @@
 .query-response:hover,
 .query-response:focus {
   font-weight: bold;
-  background-color: #e3e3e3;
+  background-color: var(--border-shadow-color);
 }
 .movie-link {
   display: block;
-  color: #000000;
+  color: var(--text-color);
   text-decoration: none;
 }

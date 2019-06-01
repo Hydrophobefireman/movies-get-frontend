@@ -32,12 +32,13 @@ export class InternalPlayerComponent extends Component {
 class SubtitlesComponent extends Component {
   state = { hasSubtitles: null };
   css = {
-    color: "black",
+    color: "var(--text-component)",
     display: "block",
     margin: "auto",
     marginBottom: "10px",
-    borderRadius: "20px",
-    width: "50%"
+    width: "25%",
+    textDecoration: "none",
+    borderRadius: "10px"
   };
   componentWillMount() {
     if (typeof this.state.hasSubtitles === "boolean") return;

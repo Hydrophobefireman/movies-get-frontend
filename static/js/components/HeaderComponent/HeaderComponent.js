@@ -17,6 +17,15 @@ export class HeaderComponent extends Component {
   componentWillMount() {
     RouterSubscription.subscribe(this.onURLChange);
   }
+  componentDidMount() {
+    const prefs = JSON.parse(localStorage.getItem("prefrences"));
+    this.setState(p => {
+      for (const i of Object.keys(prefs)) {
+        p[i] = prefs[i];
+      }
+      return p;
+    });
+  }
   componentDidUpdate() {
     const dark = document.body.getAttribute("dark");
     const dm = this.state.preferences.darkMode;
@@ -30,6 +39,9 @@ export class HeaderComponent extends Component {
   setPreferences = (prefname, val) =>
     this.setState(p => {
       p.preferences[prefname] = val;
+      const prefs = JSON.parse(localStorage.getItem("preferences") || "{}");
+      prefs[prefname] = val;
+      localStorage.setItem("preferences", JSON.stringify(prefs));
       return p;
     });
   toggleMenu = () => this.setState(p => ({ showMenu: !p.showMenu }));

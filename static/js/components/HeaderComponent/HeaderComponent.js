@@ -18,7 +18,7 @@ export class HeaderComponent extends Component {
     RouterSubscription.subscribe(this.onURLChange);
   }
   componentDidMount() {
-    const prefs = JSON.parse(localStorage.getItem("prefrences"));
+    const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
     this.setState(p => {
       for (const i of Object.keys(prefs)) {
         p[i] = prefs[i];
@@ -39,7 +39,7 @@ export class HeaderComponent extends Component {
   setPreferences = (prefname, val) =>
     this.setState(p => {
       p.preferences[prefname] = val;
-      const prefs = JSON.parse(localStorage.getItem("preferences") || "{}");
+      const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
       prefs[prefname] = val;
       localStorage.setItem("preferences", JSON.stringify(prefs));
       return p;

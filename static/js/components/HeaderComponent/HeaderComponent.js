@@ -41,7 +41,7 @@ export class HeaderComponent extends Component {
       p.preferences[prefname] = val;
       const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
       prefs[prefname] = val;
-      localStorage.setItem("preferences", JSON.stringify(prefs));
+      localStorage.setItem("prefs", JSON.stringify(prefs));
       return p;
     });
   toggleMenu = () => this.setState(p => ({ showMenu: !p.showMenu }));

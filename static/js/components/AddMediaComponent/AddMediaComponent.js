@@ -54,7 +54,7 @@ export default class AddMediaComponent extends Component {
                   display: "block",
                   textDecoration: "underline",
                   cursor: "pointer",
-                  color: "#000"
+                  color: "var(--text-color)"
                 },
                 href: `${URLBASE}/api/add/tv-show/lookup?${urlencode({
                   s: transformURL(x.url),

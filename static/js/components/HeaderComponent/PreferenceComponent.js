@@ -3,15 +3,16 @@ import { h, Fragment } from "../../@ui/ui-lib";
 export default function PreferenceComponent({
   preferences,
   setPreferences,
-  removeMenu
+  removeMenu,
+  showMenu
 }) {
   return h(
     Fragment,
     null,
-    h("div", { class: "mask", onClick: removeMenu }),
+    h("div", applyProp({ class: "mask", onClick: removeMenu }, showMenu)),
     h(
       "div",
-      { id: "preference-component" },
+      applyProp({ id: "preference-component" }, showMenu),
       h(
         Fragment,
         null,
@@ -29,3 +30,10 @@ export default function PreferenceComponent({
     )
   );
 }
+
+const applyProp = (obj, sm) => {
+  if (!sm) {
+    obj.hidden = true;
+  }
+  return obj;
+};

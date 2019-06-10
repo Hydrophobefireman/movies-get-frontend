@@ -19,11 +19,12 @@ export class HeaderComponent extends Component {
   }
   componentDidMount() {
     const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
-    this.setState(p => {
+    this.setState(() => {
+      const c = {};
       for (const i of Object.keys(prefs)) {
-        p[i] = prefs[i];
+        c[i] = prefs[i];
       }
-      return p;
+      return { preferences: c };
     });
   }
   componentDidUpdate() {
@@ -49,8 +50,8 @@ export class HeaderComponent extends Component {
   //   componentWillUnmount() {
   //     RouterSubscription.unsubscribe(this.onUrlChange);
   //   }
-  render(_, { currentUrl, showMenu, preferences }) {
-    return h(
+  render({}, { currentUrl, showMenu, preferences }) {
+    const c = h(
       Fragment,
       null,
       h(
@@ -79,12 +80,13 @@ export class HeaderComponent extends Component {
             "All Movies"
           )
       ),
-      showMenu &&
-        h(PreferenceComponent, {
-          preferences,
-          setPreferences: this.setPreferences,
-          removeMenu: this.toggleMenu
-        })
+      h(PreferenceComponent, {
+        showMenu,
+        preferences,
+        setPreferences: this.setPreferences,
+        removeMenu: this.toggleMenu
+      })
     );
+    return c;
   }
 }

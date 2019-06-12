@@ -34,7 +34,7 @@ header {
   border-top-right-radius: 20px;
   animation: showToggle 0.2s linear;
   animation-fill-mode: forwards;
-  width: 95%;
+  width: 90%;
 }
 .toggle-option {
   width: 90%;

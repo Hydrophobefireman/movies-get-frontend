@@ -33,6 +33,7 @@ const makeRequest = async id => {
     }
   );
   const ret = await data.json();
+  if(ret.error||!ret.movie_name) throw new Error()
   return {
     movie: ret.movie_name,
     urls: [ret.url, ret.alt1, ret.alt2].map(sanitizeURL)

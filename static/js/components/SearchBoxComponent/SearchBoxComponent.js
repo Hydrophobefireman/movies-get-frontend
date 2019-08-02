@@ -1,8 +1,8 @@
 import Component, { createElement as h } from "../../@ui/ui-lib.js";
 export class SearchBoxComponent extends Component {
   state = { isFocused: false, value: "" };
-  onFocus = () => !this.state.value && this.setState({ isFocused: true,moveDown:false });
-  onBlur = () => !this.state.value && this.setState({ isFocused: false,moveDown:true });
+  onFocus = () => !this.state.value && this.setState({ isFocused: true, moveDown:false });
+  onBlur = () => !this.state.value && this.setState({ isFocused: false, moveDown:true });
   onInput = e => this.setState({ value: e.target.value });
   onSubmit = () => this.props.onSubmit(this.state.value);
   render(

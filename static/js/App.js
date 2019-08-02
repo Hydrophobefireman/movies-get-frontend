@@ -28,7 +28,7 @@ window.addEventListener(
     document.head.appendChild(
       assign(document.createElement("link"), {
         rel: "stylesheet",
-        href: "https://fonts.pycode.tk/open-sans.css"
+        href: "https://fonts.pycode.cf/open-sans.css"
       })
     );
   },

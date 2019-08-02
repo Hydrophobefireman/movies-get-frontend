@@ -1,8 +1,8 @@
 import Component, { createElement as h } from "../../@ui/ui-lib.js";
 export class SearchBoxComponent extends Component {
   state = { isFocused: false, value: "" };
-  onFocus = () => !this.state.value && this.setState({ isFocused: true });
-  onBlur = () => !this.state.value && this.setState({ isFocused: false });
+  onFocus = () => !this.state.value && this.setState({ isFocused: true,moveDown:false });
+  onBlur = () => !this.state.value && this.setState({ isFocused: false,moveDown:true });
   onInput = e => this.setState({ value: e.target.value });
   onSubmit = () => this.props.onSubmit(this.state.value);
   render(
@@ -13,9 +13,9 @@ export class SearchBoxComponent extends Component {
       onInput,
       wssResponse
     },
-    { isFocused }
+    { isFocused ,moveDown}
   ) {
-    const cls = ["_animate", isFocused ? "moveup" : "movedown"];
+    const cls = ["_animate", isFocused? "moveup":"",moveDown?"movedown":""];
     return h(
       "div",
       { class: "search-component" },

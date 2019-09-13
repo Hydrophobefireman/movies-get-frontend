@@ -11,7 +11,7 @@ export class HeaderComponent extends Component {
   state = {
     currentUrl: Router.getPath,
     showMenu: false,
-    preferences: { darkMode: false }
+    preferences: { darkMode: false, zoom: false }
   };
   onURLChange = () => this.setState({ currentUrl: Router.getPath });
   componentWillMount() {
@@ -28,13 +28,9 @@ export class HeaderComponent extends Component {
     });
   }
   componentDidUpdate() {
-    const dark = document.body.getAttribute("dark");
-    const dm = this.state.preferences.darkMode;
-    if (dm && !dark) {
-      return document.body.setAttribute("dark", true);
-    } else if (!dm && dark) {
-      document.body.removeAttribute("dark");
-    }
+    const state = this.state;
+    updateDarkModePreference(state);
+    updateZoomPreference(state);
   }
 
   setPreferences = (prefname, val) =>
@@ -90,4 +86,22 @@ export class HeaderComponent extends Component {
     );
     return c;
   }
+}
+
+function updateDarkModePreference(state) {
+  const dark = document.body.getAttribute("dark");
+  const dm = state.preferences.darkMode;
+  if (dm && !dark) {
+    return document.body.setAttribute("dark", true);
+  } else if (!dm && dark) {
+    document.body.removeAttribute("dark");
+  }
+}
+
+function updateZoomPreference(state) {
+  const zoom = state.preferences.zoom;
+  const meta = document.querySelector("meta[name='viewport']");
+  const content = "width=device-width,initial-scale=1";
+  console.log(zoom);
+  meta.setAttribute("content", zoom ? content : content + ",user-scalable=no");
 }

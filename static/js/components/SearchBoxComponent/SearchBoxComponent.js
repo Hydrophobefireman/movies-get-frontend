@@ -10,8 +10,8 @@ export class SearchBoxComponent extends Component {
   render(
     {
       id,
-      buttonText = "search",
-      labelText = "search for movies",
+      buttonText = "Search",
+      labelText = "Search For Movies",
       onInput,
       wssResponse
     },

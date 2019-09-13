@@ -17,7 +17,7 @@ body {
 }
 body[dark] {
   --label-color: #fff;
-  --primary-color: #4e8de6;
+  /* --primary-color: #4e8de6; */
   --translate-normal-pos: translate(1%, 150%);
   --translate-up: translate(1%, 1%);
   --text-color: #fff;
@@ -149,13 +149,7 @@ html {
   flex-wrap: wrap;
   justify-content: center;
 }
-/* .ghostText {
-  width: 150px;
-  height: 20px;
-  background-color: #e3e3e3;
-  border-radius: 20px;
-  margin-top: 5px;
-} */
+
 
 .download-set-url-links {
   display: block;

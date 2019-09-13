@@ -15,6 +15,9 @@ body {
   padding: 0;
   user-select: none;
 }
+* {
+  text-transform: lowercase;
+}
 body[dark] {
   --label-color: #fff;
   /* --primary-color: #4e8de6; */
@@ -149,7 +152,6 @@ html {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 
 .download-set-url-links {
   display: block;

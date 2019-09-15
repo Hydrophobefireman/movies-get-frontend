@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
+    "@hydrophobefireman/j-utils": "^1.1.2",
     "core-js": "^3.2.1"
   }
 }

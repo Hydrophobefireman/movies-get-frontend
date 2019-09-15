@@ -2,6 +2,7 @@ const minifier = require("terser-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
   autoPrefixPlugin = require("autoprefixer"),
+  configJS = require("./uiconfig.js"),
   StyleExtHtmlWebpackPlugin = require("style-ext-html-webpack-plugin");
 const mode = "development";
 // const mode = "production";
@@ -23,7 +24,7 @@ module.exports = {
               [
                 "@babel/preset-env",
                 {
-                  "corejs": "3.2.1",
+                  corejs: "3.2.1",
                   useBuiltIns: "usage",
                   targets: ">0.5%,not ie 11,not op_mini all"
                 }
@@ -74,6 +75,7 @@ module.exports = {
       xhtml: !0,
       inject: false,
       favicon: "./favicon.ico",
+      uiConfig: configJS,
       minify: devOrProd(
         {
           collapseBooleanAttributes: !0,

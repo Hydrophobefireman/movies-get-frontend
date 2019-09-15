@@ -20,8 +20,9 @@ const App = h(() =>
     h("main", { class: "center" }, h(AppLoader))
   )
 );
-render(App, document.getElementById("app-root"));
-
+const root = document.getElementById("app-root");
+root.removeAttribute("style");
+render(App, root);
 window.addEventListener(
   "load",
   () => {

@@ -1,3 +1,4 @@
+import keys from "@hydrophobefireman/j-utils/@build-modern/src/modules/Object/keys.js";
 import Component, {
   createElement as h,
   A,
@@ -21,7 +22,7 @@ export class HeaderComponent extends Component {
     const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
     this.setState(() => {
       const c = {};
-      for (const i of Object.keys(prefs)) {
+      for (const i of keys(prefs)) {
         c[i] = prefs[i];
       }
       return { preferences: c };

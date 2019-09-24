@@ -1,5 +1,13 @@
 import { loadURL } from "./@ui/ui-lib.js";
 export const defaultTitle = "Watch Movies on Movies-Get";
+export {
+  default as assign
+} from "@hydrophobefireman/j-utils/@build-modern/src/modules/Object/assign.js";
+export {
+  default as nextEvent
+} from "@hydrophobefireman/j-utils/@build-modern/src/modules/nextEvent/index.js";
+import _urlencode from "@hydrophobefireman/j-utils/@build-modern/src/modules/urlencode/index.js";
+export const urlencode = _urlencode;
 const apiHost = window.location.host.includes("localhost")
   ? "localhost:5000"
   : "movies-get.herokuapp.com";
@@ -31,10 +39,6 @@ export const localWebsocketURL = a =>
     "https:" === window.location.protocol ? "wss://" : "ws://"
   }${apiHost}/${a}`;
 
-export const nextEvent = (target, name) =>
-  new Promise(resolve =>
-    target.addEventListener(name, resolve, { once: true })
-  );
 let _supportsWebp = null;
 export const supportsWebp = () =>
   new Promise((resolve, _) => {
@@ -71,15 +75,6 @@ export const decodeHTML = html => {
 };
 export const defer = fn => Promise.resolve().then(fn);
 
-export const urlencode = a => {
-  if (window.URLSearchParams) {
-    return new URLSearchParams(a).toString();
-  } else {
-    return `${Object.keys(a)
-      .map(b => `${encodeURIComponent(b)}=${encodeURIComponent(a[b])}`)
-      .join("&")}`;
-  }
-};
 export function loadSearchResults(q) {
   loadURL(`/search?${urlencode({ q })}`);
 }
@@ -94,38 +89,4 @@ export function resize(url) {
   b[1] = b[1].split("/");
   b[1] = "w_150,h_200/" + b[1][1];
   return b.join("/upload/");
-}
-const supportsMap = "Map" in self;
-
-const isMap = k => supportsMap && k instanceof Map;
-export function compatMap() {
-  if (supportsMap) return new Map();
-  else return {};
-}
-export function compatMapSet(map, k, v) {
-  if (isMap(map)) {
-    return map.set(k, v);
-  } else {
-    return (map[k] = v);
-  }
-}
-
-export function compatMapGet(map, k) {
-  if (isMap(map)) {
-    return map.get(k);
-  }
-  return map[k];
-}
-
-export function assign(target, src) {
-  if (Object.keys) {
-    for (const i of Object.keys(src)) {
-      target[i] = src[i];
-    }
-    return target;
-  }
-  for (const i in src) {
-    target[i] = src[i];
-  }
-  return target;
 }

@@ -1,13 +1,9 @@
 import Component, { createElement as h } from "../../@ui/ui-lib.js";
 import { Requests } from "../../services/httpService.js";
-import {
-  urlencode,
-  compatMap,
-  compatMapGet,
-  compatMapSet
-} from "../../common.js";
+import { urlencode } from "../../common.js";
 import { ResultComponent } from "../RecommendationsComponent/RecommendationsComponent.js";
-const cache = compatMap();
+import FakeMap from "@hydrophobefireman/j-utils/@build-modern/src/modules/es6/loose/Map/index.js";
+const cache = new FakeMap();
 const makeRequest = async q => {
   const _data = await Requests.post(
     "/api/data/search/",
@@ -20,14 +16,14 @@ console.log("Search-results cache:", cache);
 const getData = async q => {
   q = (q || "").toLowerCase();
   try {
-    const c = compatMapGet(cache, q);
+    const c = cache.get(q);
     if (c) {
       console.log("refreshing cache in background");
-      makeRequest(q).then(data => compatMapSet(cache, q, data));
+      makeRequest(q).then(data => cache.set(q, data));
       return c;
     }
     const data = await makeRequest(q);
-    compatMapSet(cache, q, data);
+    cache.set(q, data);
     return data;
   } catch (x) {
     return {

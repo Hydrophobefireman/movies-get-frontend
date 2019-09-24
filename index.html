@@ -29,22 +29,5 @@
   <body>
     <div id="app-root" style="display: none"></div>
     <noscript>This Application uses JavaScript..</noscript>
-    <script>
-      function dark(is) {
-        if (is) {
-          document.body.setAttribute("dark", "");
-        } else {
-          document.body.removeAttribute("dark");
-        }
-      }
-      var MQ_DARK = "(prefers-color-scheme: dark)";
-      var q;
-      if (window.matchMedia && (q = window.matchMedia(MQ_DARK)).matches) {
-        dark(1);
-      }
-      q.addEventListener("change", function(e) {
-        dark(e.matches);
-      });
-    </script>
   </body>
 </html>

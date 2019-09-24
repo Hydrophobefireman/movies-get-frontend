@@ -8,6 +8,7 @@ import Component, {
 } from "../../@ui/ui-lib.js";
 import "./HeaderComponent.css";
 import PreferenceComponent from "./PreferenceComponent.js";
+const MQ_DARK = "(prefers-color-scheme: dark)";
 export class HeaderComponent extends Component {
   state = {
     currentUrl: Router.getPath,
@@ -20,6 +21,13 @@ export class HeaderComponent extends Component {
   }
   componentDidMount() {
     const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
+    let q;
+    if (window.matchMedia && (q = window.matchMedia(MQ_DARK))) {
+      this.setPreferences("dark", q.matches);
+      q.addEventListener("change", e => {
+        this.setPreferences("dark", e.matches);
+      });
+    }
     this.setState(() => {
       const c = {};
       for (const i of keys(prefs)) {

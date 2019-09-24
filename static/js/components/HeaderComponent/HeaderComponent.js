@@ -23,18 +23,16 @@ export class HeaderComponent extends Component {
     const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
     let q;
     if (window.matchMedia && (q = window.matchMedia(MQ_DARK))) {
-      this.setPreferences("dark", q.matches);
+      prefs.darkMode = q.matches;
       q.addEventListener("change", e => {
         this.setPreferences("dark", e.matches);
       });
     }
-    this.setState(() => {
-      const c = {};
-      for (const i of keys(prefs)) {
-        c[i] = prefs[i];
-      }
-      return { preferences: c };
-    });
+    const c = {};
+    for (const i of keys(prefs)) {
+      c[i] = prefs[i];
+    }
+    this.setState({ preferences: c });
   }
   componentDidUpdate() {
     const state = this.state;

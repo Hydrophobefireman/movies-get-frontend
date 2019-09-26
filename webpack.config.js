@@ -2,7 +2,8 @@ const minifier = require("terser-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
   autoPrefixPlugin = require("autoprefixer"),
-  configJS = require("./uiconfig.js"),
+  configJS = require("./configs/uiconfig.js"),
+  appConfig = require("./configs/appConfig.js"),
   StyleExtHtmlWebpackPlugin = require("style-ext-html-webpack-plugin");
 const mode = "development";
 // const mode = "production";
@@ -58,10 +59,7 @@ module.exports = {
     ]
   },
   entry: `${__dirname}/static/js/App.js`,
-  output: {
-    path: `${__dirname}/docs`,
-    filename: "[name]-[contenthash].js"
-  },
+  output: { path: `${__dirname}/docs`, filename: "[name]-[contenthash].js" },
   mode,
   optimization: {
     minimizer: devOrProd([new minifier({ parallel: !0 })], []),
@@ -71,11 +69,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: false,
       template: `${__dirname}/index.html`,
       xhtml: !0,
-      inject: false,
       favicon: "./favicon.ico",
-      uiConfig: configJS,
+      configs: [configJS, appConfig],
       minify: devOrProd(
         {
           collapseBooleanAttributes: !0,

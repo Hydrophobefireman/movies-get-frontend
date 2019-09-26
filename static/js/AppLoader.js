@@ -14,7 +14,7 @@ import { ErrorComponent } from "./components/ErrorComponent/ErrorComponent.js";
 function NotFoundComponent() {
   return h("div", null, "The Requested URL was not found");
 }
-
+const shouldPrefetch = (window.__appConfig||{}).SHOULD_PREFETCH_MODULES
 const getDefault = resolvedModule => resolvedModule.default;
 /**
  * @type {{[path:string]:()=>Promise<{default:Component}>}}
@@ -39,7 +39,7 @@ const componentMap = {
     ).then(getDefault),
   "/media/add": () =>
     import(
-      /* webpackChunkName:"@lazy/add-media"*/ "./components/AddMediaComponent/AddMediaComponent.js"
+      /* webpackChunkName:"/@lazy/add-media"*/ "./components/AddMediaComponent/AddMediaComponent.js"
     ).then(getDefault),
   "/subs": () =>
     import(

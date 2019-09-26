@@ -66,7 +66,7 @@ export class AppLoader extends Component {
   }
   _onMount = () => {
     if (!this.state.hasPrefetchedComponents) {
-      this._prefetchComponents();
+     if(shouldPrefetch) this._prefetchComponents();
       this.setState({ hasPrefetchedComponents: true });
     }
     return Requests.get("/collect/");

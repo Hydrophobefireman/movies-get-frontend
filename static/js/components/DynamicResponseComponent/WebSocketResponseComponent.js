@@ -1,6 +1,6 @@
 import Component, { createElement as h, A } from "../../@ui/ui-lib.js";
 import { getSocket } from "../../services/socket.js";
-import { getWatchURL, decodeHTML, debounce } from "../../common.js";
+import { getWatchURL, decodeHTML } from "../../common.js";
 let socket;
 export class WebSocketResponseComponent extends Component {
   state = { resp: [], prevVal: "" };

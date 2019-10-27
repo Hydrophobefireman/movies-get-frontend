@@ -6,7 +6,7 @@ import Component, {
 
 const CURRENT_AVAILABLE_WEBSITES = {
   "PROXY-PY.HEROKUAPP.COM":
-    "https://proxy-py.herokuapp.com/api/parse_query?url=",
+    "https://proxy-py.herokuapp.com/video?url=",
   "DL-JS.HEROKUAPP.COM": "https://dl-js.herokuapp.com/video/?url=",
   "DL-PY.HEROKUAPP.COM": "https://dl-py.herokuapp.com/video/?url=",
   "PROXY-DL.HEROKUAPP.COM": "https://proxy-dl.herokuapp.com/video?url="

@@ -14,7 +14,12 @@ const devOrProd = (a, b) => {
 };
 
 module.exports = {
-  devServer: { contentBase: `${__dirname}/docs`, compress: !0, port: 4200 },
+  devServer: {
+    contentBase: `${__dirname}/docs`,
+    compress: !0,
+    port: 4200,
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {

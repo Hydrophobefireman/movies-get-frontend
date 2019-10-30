@@ -23,7 +23,7 @@ export class HeaderComponent extends Component {
     const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
     let q;
     if (window.matchMedia && (q = window.matchMedia(MQ_DARK))) {
-      if (!("darkMode" in prefs)) {
+      if (prefs.darkMode == null) {
         prefs.darkMode = q.matches;
       }
       q.addEventListener("change", e => {
@@ -101,8 +101,10 @@ function updateDarkModePreference(state) {
   const dark = document.body.getAttribute("dark");
   const dm = state.preferences.darkMode;
   if (dm && !dark) {
+    window.__globalEvt.emit(true);
     return document.body.setAttribute("dark", true);
   } else if (!dm && dark) {
+    window.__globalEvt.emit(false);
     document.body.removeAttribute("dark");
   }
 }
@@ -111,6 +113,5 @@ function updateZoomPreference(state) {
   const zoom = state.preferences.zoom;
   const meta = document.querySelector("meta[name='viewport']");
   const content = "width=device-width,initial-scale=1";
-  console.log(zoom);
   meta.setAttribute("content", zoom ? content : content + ",user-scalable=no");
 }

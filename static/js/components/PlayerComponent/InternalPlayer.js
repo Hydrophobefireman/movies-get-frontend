@@ -36,7 +36,7 @@ class SubtitlesComponent extends Component {
     display: "block",
     margin: "auto",
     marginBottom: "10px",
-    width: "25%",
+    width: "50%",
     textDecoration: "none",
     borderRadius: "10px"
   };

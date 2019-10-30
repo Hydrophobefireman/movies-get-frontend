@@ -166,3 +166,21 @@ html {
 .download-set-url-links:active {
   background-color: var(--background-color);
 }
+
+.admin-button {
+  width: 20%;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-transform: capitalize;
+}
+input.data-inp-admin {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.back-svg {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}

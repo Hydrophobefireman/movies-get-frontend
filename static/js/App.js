@@ -20,6 +20,31 @@ const App = h(() =>
     h("main", { class: "center" }, h(AppLoader))
   )
 );
+const subs = [];
+window.__globalEvt = {
+  /**
+   * @param {(e:PopStateEvent|null)=>any} fun
+   */
+  subscribe(fun) {
+    if (!subs.includes(fun)) subs.push(fun);
+  },
+  unsubscribe(fun) {
+    for (let i = 0; i < subs.length; i++) {
+      if (subs[i] === fun) return subs.splice(i, 1);
+    }
+  },
+  /**
+   * @param {string} e
+   */
+  emit(e, options) {
+    for (const subscription of subs) {
+      subscription(e, options);
+    }
+  },
+  unsubscribeAll() {
+    subs.length = 0;
+  }
+};
 const root = document.getElementById("app-root");
 root.removeAttribute("style");
 render(App, root);

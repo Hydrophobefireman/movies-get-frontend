@@ -62,6 +62,7 @@ export class SearchComponent extends Component {
   };
   componentDidMount() {
     this.setState({
+      didMount: true,
       isFetching: true,
       fetchingPromise: getData(this.props.q).then(this.showResults),
       showGhost: true

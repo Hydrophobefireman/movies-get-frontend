@@ -14,7 +14,7 @@ import { ErrorComponent } from "./components/ErrorComponent/ErrorComponent.js";
 function NotFoundComponent() {
   return h("div", null, "The Requested URL was not found");
 }
-const shouldPrefetch = (window.__appConfig||{}).SHOULD_PREFETCH_MODULES
+const shouldPrefetch = (window.__appConfig || {}).SHOULD_PREFETCH_MODULES;
 const getDefault = resolvedModule => resolvedModule.default;
 /**
  * @type {{[path:string]:()=>Promise<{default:Component}>}}
@@ -39,7 +39,7 @@ const componentMap = {
     ).then(getDefault),
   "/media/add": () =>
     import(
-      /* webpackChunkName:"/@lazy/add-media"*/ "./components/AddMediaComponent/AddMediaComponent.js"
+      /* webpackChunkName:"@lazy/add-media"*/ "./components/AddMediaComponent/AddMediaComponent.js"
     ).then(getDefault),
   "/subs": () =>
     import(
@@ -48,6 +48,10 @@ const componentMap = {
   "/out": () =>
     import(
       /* webpackChunkName:"@lazy/out"*/ "./components/OutComponent/OutComponent.js"
+    ).then(getDefault),
+  "/admin": () =>
+    import(
+      /* webpackChunkName:"@lazy/admin"*/ "./components/AdminComponent/AdminComponent.js"
     ).then(getDefault)
 };
 export class AppLoader extends Component {
@@ -66,7 +70,7 @@ export class AppLoader extends Component {
   }
   _onMount = () => {
     if (!this.state.hasPrefetchedComponents) {
-     if(shouldPrefetch) this._prefetchComponents();
+      if (shouldPrefetch) this._prefetchComponents();
       this.setState({ hasPrefetchedComponents: true });
     }
     return Requests.get("/collect/");

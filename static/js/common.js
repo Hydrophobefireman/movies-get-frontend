@@ -1,4 +1,4 @@
-import { loadURL } from "./@ui/ui-lib.js";
+import { loadURL } from "@hydrophobefireman/ui-lib/src/index.js";
 export const defaultTitle = "Watch Movies on Movies-Get";
 export {
   default as assign

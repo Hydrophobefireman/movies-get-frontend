@@ -1,4 +1,4 @@
-import Component, { createElement as h, A } from "../../@ui/ui-lib.js";
+import Component, { h, A } from "@hydrophobefireman/ui-lib/src/index.js";
 import "./LandingComponent.css";
 import { defaultTitle } from "../../common.js";
 import { DynamicResponseComponent } from "../DynamicResponseComponent/DynamicResponseComponent.js";

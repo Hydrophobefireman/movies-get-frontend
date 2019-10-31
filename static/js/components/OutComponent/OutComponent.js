@@ -2,11 +2,10 @@ import Component, {
   createElement as h,
   Router,
   Fragment
-} from "../../@ui/ui-lib.js";
+} from "@hydrophobefireman/ui-lib/src/index.js";
 
 const CURRENT_AVAILABLE_WEBSITES = {
-  "PROXY-PY.HEROKUAPP.COM":
-    "https://proxy-py.herokuapp.com/video?url=",
+  "PROXY-PY.HEROKUAPP.COM": "https://proxy-py.herokuapp.com/video?url=",
   "DL-JS.HEROKUAPP.COM": "https://dl-js.herokuapp.com/video/?url=",
   "DL-PY.HEROKUAPP.COM": "https://dl-py.herokuapp.com/video/?url=",
   "PROXY-DL.HEROKUAPP.COM": "https://proxy-dl.herokuapp.com/video?url="

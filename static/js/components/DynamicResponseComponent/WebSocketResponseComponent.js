@@ -1,4 +1,4 @@
-import Component, { createElement as h, A } from "../../@ui/ui-lib.js";
+import Component, { h, A } from "@hydrophobefireman/ui-lib/src/index.js";
 import { getSocket } from "../../services/socket.js";
 import { getWatchURL, decodeHTML } from "../../common.js";
 let socket;

@@ -1,5 +1,5 @@
+import { createElement as h } from "@hydrophobefireman/ui-lib/src/index.js";
 import { Requests } from "../../services/httpService.js";
-import { createElement as h } from "../../@ui/ui-lib.js";
 import FakeMap from "@hydrophobefireman/j-utils/@build-modern/src/modules/es6/loose/Map/index.js";
 export const defaultHTML =
   "data:text/html;base64,PGh0bWw+PGJvZHkgc3R5bGU9Im1hcmdpbjphdXRvO3RleHQtYWxpZ246Y2VudGVyO2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7Zm9udC13ZWlnaHQ6Ym9sZCI+TG9hZGluZy4uLjwvYm9keT48L2h0bWw+";

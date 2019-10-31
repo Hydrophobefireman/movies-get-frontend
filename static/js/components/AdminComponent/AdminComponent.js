@@ -1,4 +1,8 @@
-import { createElement as h, Fragment, Component } from "../../@ui/ui-lib.js";
+import {
+  createElement as h,
+  Fragment,
+  Component
+} from "@hydrophobefireman/ui-lib/src/index.js";
 import { SearchBoxComponent } from "../SearchBoxComponent/SearchBoxComponent.js";
 import { Requests } from "../../services/httpService.js";
 import { SearchComponent } from "../SearchResultsComponent/SearchComponent.js";

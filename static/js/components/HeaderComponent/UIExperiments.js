@@ -1,4 +1,4 @@
-import { h, Component, Fragment } from "../../@ui/ui-lib";
+import { h, Component, Fragment } from "@hydrophobefireman/ui-lib/src/index.js";
 import values from "@hydrophobefireman/j-utils/@build-modern/src/modules/Object/values";
 import keys from "@hydrophobefireman/j-utils/@build-modern/src/modules/Object/keys.js";
 function normalize(obj) {
@@ -8,7 +8,7 @@ function normalize(obj) {
   });
   return r;
 }
-const experimentsJSON = window.__uiExperiments
+const experimentsJSON = window.__uiExperiments;
 export default class UIExperiments extends Component {
   state = {
     experiments: normalize(experimentsJSON.experiments),

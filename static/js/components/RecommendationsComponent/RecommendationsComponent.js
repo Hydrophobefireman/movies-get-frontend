@@ -1,4 +1,8 @@
-import Component, { createElement as h, Fragment, A } from "../../@ui/ui-lib";
+import Component, {
+  createElement as h,
+  Fragment,
+  A
+} from "@hydrophobefireman/ui-lib/src/index.js";
 import { Requests } from "../../services/httpService";
 import {
   getWatchURL,

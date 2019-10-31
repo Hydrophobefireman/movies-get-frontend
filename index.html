@@ -35,6 +35,31 @@
 
   <body>
     <div id="app-root" style="display: none"></div>
+    <template is="custom" custom-element="loading-spinner"
+      ><style>
+        .spinner {
+          margin: auto;
+          height: 50px;
+          width: 50px;
+          animation: rotate 0.8s infinite linear;
+          border: 6px solid var(--background-color);
+          border-right-color: var(--primary-color);
+          border-radius: 50%;
+        }
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <div class="spinner"></div
+    ></template>
+    <script>
+      <%= require("./htmlGenerator.js").customElementsGen %>
+    </script>
     <noscript>This Application uses JavaScript..</noscript>
     <%=
     require("./htmlGenerator.js").generateScripts(htmlWebpackPlugin.files.chunks)

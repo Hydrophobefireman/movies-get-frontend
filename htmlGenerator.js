@@ -49,7 +49,7 @@ const getImport = (src, type) =>
 function wrapWithScriptTags({ arr, type, id, isLegacy }) {
   if (!arr || !arr.length) return "";
   const start = `<script${type ? ' type="module"' : ""}${
-    id ? ' id="' + id + '"' : ""
+    id ? ` id="${id}"` : ""
   }${isLegacy ? " nomodule" : ""}>`;
   const end = "</script>";
   return start + arr.map(src => getImport(src)).join("") + end;
@@ -98,11 +98,11 @@ module.exports.importPolyFill = minify(
         configurable: !0
       }),
         (___this.globalThis = ___this);
-      var e = ___this;
+      const e = ___this;
       return delete Object.prototype.___this, e;
     }
 
-    var t = getGlobal(),
+    const t = getGlobal(),
       _obj = {},
       _Object = _obj.constructor,
       hasOwnProp = _obj.hasOwnProperty,
@@ -119,10 +119,10 @@ module.exports.importPolyFill = minify(
         "assign" in _Object
           ? _Object.assign
           : function(e) {
-              for (var _t = arguments, _n = 1; _n < arguments.length; _n++) {
-                var _r = _t[_n];
+              for (let _t = arguments, _n = 1; _n < arguments.length; _n++) {
+                const _r = _t[_n];
 
-                for (var _i in _r) {
+                for (const _i in _r) {
                   hasOwnProp.call(_r, _i) && (e[_i] = _r[_i]);
                 }
               }
@@ -134,34 +134,25 @@ module.exports.importPolyFill = minify(
     function f(e, t) {
       if (!isBrowser) return null;
       if (isDocument) {
-        var script = assign(document.createElement("script"), {
+        const script = assign(document.createElement("script"), {
           type: t || "text/javascript",
           charset: "utf-8"
         });
 
         return "module" === t
-          ? (function(e, t) {
-              var n = d[c];
+          ? ((e, t) => {
+              const n = d[c];
               if (n) return Promise.resolve(n[t]);
-              var r = "loaded__" + t;
+              const r = `loaded__${t}`;
               return (
                 assign(e, {
-                  text:
-                    'import * as Obj from "' +
-                    t +
-                    '";\n    window["' +
-                    c +
-                    '"]["' +
-                    t +
-                    '"]=Obj;\n    dispatchEvent(new Event("' +
-                    r +
-                    '"))'
+                  text: `import * as Obj from "${t}";\n    window["${c}"]["${t}"]=Obj;\n    dispatchEvent(new Event("${r}"))`
                 }),
-                new Promise(function(n, o) {
+                new Promise((n, o) => {
                   window.addEventListener(
                     r,
-                    function() {
-                      var e = d[c];
+                    () => {
+                      const e = d[c];
                       e && n(e[t]);
                     },
                     {
@@ -172,13 +163,13 @@ module.exports.importPolyFill = minify(
                 })
               );
             })(script, e)
-          : (function(e, t) {
-              return new Promise(function(n, r) {
+          : ((e, t) => {
+              return new Promise((n, r) => {
                 assign(e, {
                   src: t
                 });
 
-                var o = function o() {
+                const o = function o() {
                     s(), n(e);
                   },
                   i = function i() {
@@ -203,4 +194,93 @@ module.exports.importPolyFill = minify(
     d[c] = {};
     return f;
   })
+).code;
+
+module.exports.customElementsGen = minify(
+  `(${function() {
+    function getGlobal() {
+      if (typeof globalThis !== "undefined") return globalThis;
+      Object.defineProperty(Object.prototype, "__this", {
+        enumerable: true,
+        configurable: true,
+        get: function() {
+          return this;
+        }
+      });
+      const a = __this;
+      delete Object.prototype.__this;
+      return a;
+    }
+    const gl = getGlobal();
+    if (!("customElements" in gl)) return;
+    const arrFrom = arrLike => {
+      if ("from" in Array) {
+        return Array.from(arrLike);
+      }
+      const c = [];
+      const a = arrLike.length;
+      for (let i = 0; i < a; i++) {
+        c.push(arrLike[i]);
+      }
+      return c;
+    };
+
+    gl.__init__ = (protoData, props) => {
+      const c = arrFrom(document.querySelectorAll("template[is='custom']"));
+      for (const i of c) {
+        makeCE(
+          i,
+          protoData[i.getAttribute("custom-element")] || {},
+          props || {}
+        );
+      }
+    };
+
+    function recursivelyApplyProps(el, props, diffing) {
+      const ch = arrFrom(el.children);
+      for (const c of ch) {
+        const ds = c.dataset;
+        for (let prop in ds) {
+          const val = ds[prop];
+          const v = props[val];
+          prop = prop === "class" ? "className" : prop;
+          if (prop[0] === "o" && prop[1] === "n") {
+            let fn;
+            if (!c.hasAttribute("updates-reactively")) {
+              fn = v;
+            } else {
+              fn = (...args) => {
+                v(...args);
+                recursivelyApplyProps(c, props, true);
+              };
+            }
+            c.addEventListener(prop.substr(2), fn);
+          } else {
+            c[prop] = v;
+          }
+          recursivelyApplyProps(c, props);
+        }
+      }
+    }
+    function makeCE(t, pr, opts) {
+      const cls = class extends HTMLElement {
+        constructor() {
+          super();
+          this.s = this.attachShadow({
+            mode: "open"
+          });
+          this.s.appendChild(t.content.cloneNode(!0));
+          const configNs = t.getAttribute("config-ns");
+          recursivelyApplyProps(
+            this.s,
+            configNs && configNs in opts ? opts[configNs] : opts
+          );
+        }
+      };
+      const { modifyConstructor, modifyPrototype } = pr;
+      modifyConstructor(cls);
+      modifyPrototype(cls.prototype);
+      gl.customElements.define(t.getAttribute("custom-element"), cls);
+    }
+  }})()`
 ).code;

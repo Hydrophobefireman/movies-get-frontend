@@ -5,7 +5,8 @@ import Component, {
   absolutePath,
   redirect,
   Fragment
-} from "./@ui/ui-lib.js";
+} from "@hydrophobefireman/ui-lib/src/index.js";
+
 import { Requests } from "./services/httpService.js";
 import { retry } from "./common.js";
 import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner.js";

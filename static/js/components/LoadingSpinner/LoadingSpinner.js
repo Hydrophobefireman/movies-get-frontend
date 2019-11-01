@@ -2,42 +2,26 @@ import {
   createElement as h,
   Fragment
 } from "@hydrophobefireman/ui-lib/src/index.js";
+import { init } from "@hydrophobefireman/qwc/dist/index.modern.js";
 let spinner;
 if (window.customElements) {
   const SIZE = "size";
-  __init__({
+  init({
     "loading-spinner": {
-      modifyConstructor(c) {
-        Object.defineProperty(c, "observedAttributes", {
-          get() {
-            return [SIZE];
-          }
-        });
-      },
-      modifyPrototype(p) {
-        Object.defineProperties(p, {
-          attributeChangedCallback: {
-            value: function(name, oldVal, newVal) {
-              if (name === SIZE && newVal !== oldVal) {
-                const css = this.shadowRoot.querySelector("div").style;
-                css.height = css.width =
-                  typeof newVal === "string" && newVal.includes("px")
-                    ? newVal
-                    : `${newVal}px`;
-              }
-            }
-          },
-          [SIZE]: {
-            get() {
-              const value = this.getAttribute(SIZE);
-              return value === null ? "" : value;
-            },
-            set(v) {
-              this.setAttribute(SIZE, v);
+      observedAttributes: [
+        {
+          prop: SIZE,
+          listener(oldVal, newVal) {
+            if (newVal !== oldVal) {
+              const css = this.shadowRoot.querySelector("div").style;
+              css.height = css.width =
+                typeof newVal === "string" && newVal.includes("px")
+                  ? newVal
+                  : `${newVal}px`;
             }
           }
-        });
-      }
+        }
+      ]
     }
   });
 

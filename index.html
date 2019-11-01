@@ -57,9 +57,6 @@
       </style>
       <div class="spinner"></div
     ></template>
-    <script>
-      <%= require("./htmlGenerator.js").customElementsGen %>
-    </script>
     <noscript>This Application uses JavaScript..</noscript>
     <%=
     require("./htmlGenerator.js").generateScripts(htmlWebpackPlugin.files.chunks)

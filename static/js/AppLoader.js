@@ -8,7 +8,7 @@ import Component, {
 } from "@hydrophobefireman/ui-lib/src/index.js";
 
 import { Requests } from "./services/httpService.js";
-import { retry } from "./common.js";
+import retry from "@hydrophobefireman/j-utils/@build-modern/src/modules/retry/index.js";
 import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner.js";
 import { ErrorComponent } from "./components/ErrorComponent/ErrorComponent.js";
 
@@ -88,7 +88,8 @@ export class AppLoader extends Component {
     if (this.state.hasServerResponse) {
       this.setState({ hasServerResponse: false });
     }
-    return void retry(this._onMount, 3, 500)
+    const fn = retry(this._onMount, 3, 500);
+    return void fn()
       .then(() =>
         this.setState({ hasServerResponse: true, isContentLoadable: true })
       )

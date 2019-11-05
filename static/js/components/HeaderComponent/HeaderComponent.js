@@ -8,6 +8,7 @@ import Component, {
 } from "@hydrophobefireman/ui-lib/src/index.js";
 import "./HeaderComponent.css";
 import PreferenceComponent from "./PreferenceComponent.js";
+const MQ_NOPREF = "(prefers-color-scheme: no-preference)";
 const MQ_DARK = "(prefers-color-scheme: dark)";
 export class HeaderComponent extends Component {
   state = {
@@ -22,18 +23,19 @@ export class HeaderComponent extends Component {
   componentDidMount() {
     const prefs = JSON.parse(localStorage.getItem("prefs") || "{}");
     let q;
-    if (window.matchMedia && (q = window.matchMedia(MQ_DARK))) {
+    if (window.matchMedia && (q = window.matchMedia(MQ_NOPREF))) {
       if (prefs.darkMode == null) {
-        prefs.darkMode = q.matches;
+        prefs.darkMode = !q.matches;
       }
-      q.addEventListener("change", e => {
+      window.matchMedia(MQ_DARK).addEventListener("change", e => {
         this.setPreferences("dark", e.matches);
       });
     }
-    const c = {};
+    const c = { ...this.state.preferences };
     for (const i of keys(prefs)) {
       c[i] = prefs[i];
     }
+
     this.setState({ preferences: c });
   }
   componentDidUpdate() {

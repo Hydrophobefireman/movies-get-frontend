@@ -6,6 +6,16 @@ import Component, {
 import { defaultHTML, getHost } from "./util.js";
 import { urlencode, decodeHTML } from "../../common.js";
 import { Requests } from "../../services/httpService.js";
+const b64ENCODED_STR =
+  "PGh0bWw+PGhlYWQ+PC9oZWFkPjxib2R5PjxkaXYgc3R5bGU9ImNvbG9yOiB3aGl0ZTttYXJnaW46YXV0bztmb250LWZhbWlseTogc2Fucy1zZXJpZjt0ZXh0LWFsaWduOmNlbnRlcjtmb250LXdlaWdodDogYm9sZDsiPlVzZSBUaGUgQ3VzdG9tIERvd25sb2FkZXIgdG8gV2F0Y2g8L2Rpdj48L2JvZHk+PC9odG1sPg==";
+const tuneStreamErr = "data:text/html;base64," + b64ENCODED_STR;
+function getSRC(url) {
+  const u = new URL(url);
+  if (u.hostname.toLowerCase().includes("tunestream")) {
+    return tuneStreamErr;
+  }
+  return url;
+}
 export class InternalPlayerComponent extends Component {
   state = { src: defaultHTML };
   componentDidMount() {
@@ -24,7 +34,7 @@ export class InternalPlayerComponent extends Component {
       h("h2", { style: { fontWeight: "bold" } }, decodeHTML(movieName)),
       h(SubtitlesComponent, { id }),
       URLs.map(x => h(URLSelectorComponent, { url: x, onClick: this.setSrc })),
-      h("iframe", { class: "frame-src", src: this.state.src }),
+      h("iframe", { class: "frame-src", src: getSRC(this.state.src) }),
       URLs.map(x => h(URLDownloaderComponent, { href: x }))
     );
   }

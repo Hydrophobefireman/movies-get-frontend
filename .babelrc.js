@@ -15,7 +15,7 @@ module.exports = {
             loose: true,
             corejs: 3,
             targets: {
-              browsers: ["last 2 versions", "ie >= 11"]
+              browsers: ["last 2 versions", "ie >= 11", "op_mini all"]
             },
             useBuiltIns: "usage"
           }

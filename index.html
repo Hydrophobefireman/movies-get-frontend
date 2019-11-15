@@ -8,17 +8,16 @@
     <link rel="preconnect" href="https://fonts.pycode.tk/" />
     <link rel="preconnect" href="https://res.cloudinary.com/" />
     <link rel="preconnect" href="https://movies-get.herokuapp.com/" />
-
     <script>
        <% for (const {id,config} of htmlWebpackPlugin.options.configs) { %> window["<%= id %>"]=JSON.parse(<%= JSON.stringify(JSON.stringify(config)) %>);<% } %>
-       (function () {
+      <%= require("terser").minify("("+ function () {
         window.__getLink = function (href, rel) {
           var link = document.createElement("link");
           link.rel = rel;
           link.href = href;
           document.head.appendChild(link);
-        }; 
-      })();
+        };
+      }+")()").code %>
     </script>
     <link
       rel="preload"
@@ -27,6 +26,8 @@
     />
     <base href="/" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <%= require("./htmlGenerator").generatePrefetch(webpack.assetsByChunkName)
+    %>
   </head>
 
   <body>
@@ -50,7 +51,6 @@
             transform: rotate(360deg);
           }
         }
-        
       </style>
       <div class="spinner"></div
     ></template>

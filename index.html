@@ -9,15 +9,7 @@
     <link rel="preconnect" href="https://res.cloudinary.com/" />
     <link rel="preconnect" href="https://movies-get.herokuapp.com/" />
     <script>
-       <% for (const {id,config} of htmlWebpackPlugin.options.configs) { %> window["<%= id %>"]=JSON.parse(<%= JSON.stringify(JSON.stringify(config)) %>);<% } %>
-      <%= require("terser").minify("("+ function () {
-        window.__getLink = function (href, rel) {
-          var link = document.createElement("link");
-          link.rel = rel;
-          link.href = href;
-          document.head.appendChild(link);
-        };
-      }+")()").code %>
+      <% for (const {id,config} of htmlWebpackPlugin.options.configs) { %> window["<%= id %>"]=JSON.parse(<%= JSON.stringify(JSON.stringify(config)) %>);<% } %>
     </script>
     <link
       rel="preload"
@@ -26,10 +18,7 @@
     />
     <base href="/" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <%= require("./htmlGenerator").generatePrefetch(webpack.assetsByChunkName)
-    %>
   </head>
-
   <body>
     <div id="app-root" style="display: none"></div>
     <template is="custom" custom-element="loading-spinner"

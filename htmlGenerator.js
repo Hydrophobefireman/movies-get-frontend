@@ -4,17 +4,21 @@ module.exports.generatePrefetch = scripts => {
   let mod = '<script type="module">';
   const modPreloadArr = [];
   const noModPreloadArr = [];
-  Object.keys(scripts).forEach(x =>
-    isLegacy(x)
-      ? noModPreloadArr.push(normalize(scripts[x]))
-      : modPreloadArr.push(normalize(scripts[x]))
-  );
+  Object.keys(scripts)
+    .map(x => normalize(x))
+    .forEach(x =>
+      isLegacy(x)
+        ? noModPreloadArr.push(scripts[x])
+        : modPreloadArr.push(scripts[x])
+    );
   modPreloadArr.forEach(x => (mod += `window.__getLink("${x}","prefetch");`));
   mod += "</script>";
   noModPreloadArr.forEach(
     x => (noMod += `window.__getLink("${x}","prefetch");`)
   );
-  noMod += "</script>";
+  noMod +=
+    `</script><script type="bruh">${JSON.stringify(scripts)}</scripts>`;
+
   return mod + noMod;
 };
 

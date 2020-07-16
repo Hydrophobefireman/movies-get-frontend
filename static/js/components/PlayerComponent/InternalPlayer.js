@@ -2,7 +2,7 @@ import Component, {
   createElement as h,
   Fragment,
   A
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import { defaultHTML, getHost } from "./util.js";
 import { urlencode, decodeHTML } from "../../common.js";
 import { Requests } from "../../services/httpService.js";

@@ -2,7 +2,7 @@ import Component, {
   createElement as h,
   Fragment,
   A
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import { Requests } from "../../services/httpService";
 import {
   getWatchURL,

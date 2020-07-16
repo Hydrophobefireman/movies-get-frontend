@@ -1,4 +1,4 @@
-import { h, Fragment } from "@hydrophobefireman/ui-lib/src/index.js";
+import { h, Fragment } from "@hydrophobefireman/ui-lib";
 import UIExperiments from "./UIExperiments.js";
 const canZoom = "ontouchstart" in window || navigator.maxTouchPoints;
 

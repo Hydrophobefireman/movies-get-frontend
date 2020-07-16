@@ -2,7 +2,7 @@ import {
   createElement as h,
   render,
   Fragment
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import "./App.css";
 import { HeaderComponent } from "./components/HeaderComponent/HeaderComponent.js";
 import { AppLoader } from "./AppLoader.js";

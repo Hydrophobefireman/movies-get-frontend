@@ -1,4 +1,4 @@
-import { createElement as h } from "@hydrophobefireman/ui-lib/src/index.js";
+import { createElement as h } from "@hydrophobefireman/ui-lib";
 import { Requests } from "../../services/httpService.js";
 import FakeMap from "@hydrophobefireman/j-utils/@build-modern/src/modules/es6/loose/Map/index.js";
 export const defaultHTML =

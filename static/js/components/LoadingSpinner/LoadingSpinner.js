@@ -1,7 +1,7 @@
 import {
   createElement as h,
   Fragment
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import { init } from "@hydrophobefireman/qwc/dist/index.modern.js";
 let spinner;
 if (window.customElements) {

@@ -1,4 +1,4 @@
-import { h } from "@hydrophobefireman/ui-lib/src/index.js";
+import { h } from "@hydrophobefireman/ui-lib";
 export function ErrorComponent({ onRetryClick }) {
   return h(
     "div",

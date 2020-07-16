@@ -1,7 +1,7 @@
 import Component, {
   createElement as h,
   Fragment
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import { SearchBoxComponent } from "../SearchBoxComponent/SearchBoxComponent.js";
 import { Requests } from "../../services/httpService.js";
 import { SearchComponent } from "../SearchResultsComponent/SearchComponent.js";

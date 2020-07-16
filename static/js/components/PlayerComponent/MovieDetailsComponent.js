@@ -1,6 +1,6 @@
 import Component, {
   createElement as h
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner.js";
 import { getMovieDetails, txtComponent } from "./util.js";
 import { InternalPlayerComponent } from "./InternalPlayer.js";

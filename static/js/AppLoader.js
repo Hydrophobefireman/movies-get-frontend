@@ -5,7 +5,7 @@ import Component, {
   absolutePath,
   redirect,
   Fragment
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 
 import { Requests } from "./services/httpService.js";
 import retry from "@hydrophobefireman/j-utils/@build-modern/src/modules/retry/index.js";

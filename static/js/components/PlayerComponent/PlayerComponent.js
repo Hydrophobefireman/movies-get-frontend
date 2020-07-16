@@ -2,7 +2,7 @@ import Component, {
   createElement as h,
   Fragment,
   Router
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 
 import { DynamicResponseComponent } from "../DynamicResponseComponent/DynamicResponseComponent.js";
 import { MovieDetailsComponent } from "./MovieDetailsComponent.js";

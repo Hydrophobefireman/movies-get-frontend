@@ -1,6 +1,6 @@
 import Component, {
   createElement as h
-} from "@hydrophobefireman/ui-lib/src/index.js";
+} from "@hydrophobefireman/ui-lib";
 import { Requests } from "../../services/httpService.js";
 import { urlencode } from "../../common.js";
 import { ResultComponent } from "../RecommendationsComponent/RecommendationsComponent.js";

@@ -1,4 +1,4 @@
-import Component, { h, A } from "@hydrophobefireman/ui-lib/src/index.js";
+import Component, { h, A } from "@hydrophobefireman/ui-lib";
 import { getSocket } from "../../services/socket.js";
 import { getWatchURL, decodeHTML } from "../../common.js";
 let socket;
